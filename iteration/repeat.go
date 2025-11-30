@@ -1,11 +1,9 @@
 package iteration
 
 func Repeat(character string) string {
-	if character == "b" {
-		return "bbbbb"
+	var repeated string
+	for range 5 {
+		repeated += character
 	}
-	if character == "c" {
-		return "ccccc"
-	}
-	return "aaaaa"
+	return repeated
 }
