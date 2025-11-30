@@ -12,7 +12,7 @@ repos:
     hooks:
       - id: go-test
         name: go test
-        entry: go test ./... -count=1 -timeout=30s
+        entry: go test -v ./... -count=1 -timeout=30s
         language: system
         types: [go]
         pass_filenames: false
