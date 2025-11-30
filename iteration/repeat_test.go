@@ -26,3 +26,9 @@ func assertCorrectMessage(t testing.TB, got, want string) {
 		t.Errorf("got %q want %q", got, want)
 	}
 }
+
+func BenchmarkRepeat(b *testing.B) {
+	for b.Loop() {
+		Repeat("a")
+	}
+}
