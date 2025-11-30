@@ -3,26 +3,21 @@ package iteration
 import "testing"
 
 func TestRepeat(t *testing.T) {
-	t.Run("print a five times", func(t *testing.T) {
-		repeated := Repeat("a")
-		expected := "aaaaa"
+	testCases := []struct {
+		input    string
+		expected string
+	}{
+		{"a", "aaaaa"},
+		{"b", "bbbbb"},
+		{"c", "ccccc"},
+	}
 
-		assertCorrectMessage(t, repeated, expected)
-	})
-
-	t.Run("print b five times", func(t *testing.T) {
-		repeated := Repeat("b")
-		expected := "bbbbb"
-
-		assertCorrectMessage(t, repeated, expected)
-	})
-
-	t.Run("print c five times", func(t *testing.T) {
-		repeated := Repeat("c")
-		expected := "ccccc"
-
-		assertCorrectMessage(t, repeated, expected)
-	})
+	for _, testCase := range testCases {
+		t.Run("repeating "+testCase.input, func(t *testing.T) {
+			repeated := Repeat(testCase.input)
+			assertCorrectMessage(t, repeated, testCase.expected)
+		})
+	}
 }
 
 func assertCorrectMessage(t testing.TB, got, want string) {
