@@ -6,7 +6,6 @@ import (
 )
 
 func TestSum(t *testing.T) {
-
 	testCases := []struct {
 		numbers  []int
 		expected int
@@ -28,10 +27,20 @@ func TestSum(t *testing.T) {
 }
 
 func TestSumAll(t *testing.T) {
-	got := SumAll([]int{1, 2}, []int{0, 9})
-	want := []int{3, 9}
+	testcases := []struct {
+		numbersToSum [][]int
+		expected     []int
+	}{
+		{[][]int{{1, 2}, {3, 4, 5}}, []int{3, 12}},
+		{[][]int{{}, {0, 9}}, []int{0, 9}},
+	}
 
-	if !slices.Equal(got, want) {
-		t.Errorf("got %v want %v", got, want)
+	for _, testtestcases := range testcases {
+		t.Run("given multiple slices when sum all then returns correct totals", func(t *testing.T) {
+			got := SumAll(testtestcases.numbersToSum...)
+			if !slices.Equal(got, testtestcases.expected) {
+				t.Errorf("got %v want %v given, %v", got, testtestcases.expected, testtestcases.numbersToSum)
+			}
+		})
 	}
 }
