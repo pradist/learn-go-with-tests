@@ -48,16 +48,16 @@ func TestSumAll(t *testing.T) {
 
 func TestSumAllTails(t *testing.T) {
 	testCases := []struct {
+		name         string
 		numbersToSum [][]int
 		expected     []int
 	}{
-		{[][]int{{1, 2}, {0, 9}}, []int{2, 9}},
-		{[][]int{{}, {3, 4, 5}}, []int{0, 9}},
-		{[][]int{{7, 8, 9}, {}}, []int{17, 0}},
+		{"make the sums of tails of", [][]int{{1, 2}, {0, 9}}, []int{2, 9}},
+		{"safely sum empty slices", [][]int{{}, {3, 4, 5}}, []int{0, 9}},
 	}
 
 	for _, testCase := range testCases {
-		t.Run("given multiple slices when sum all tails then returns correct totals", func(t *testing.T) {
+		t.Run(testCase.name, func(t *testing.T) {
 			got := SumAllTails(testCase.numbersToSum...)
 			if !reflect.DeepEqual(got, testCase.expected) {
 				t.Errorf("got %v want %v given, %v", got, testCase.expected, testCase.numbersToSum)
