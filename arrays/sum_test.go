@@ -8,17 +8,18 @@ import (
 
 func TestSum(t *testing.T) {
 	testCases := []struct {
+		name     string
 		numbers  []int
 		expected int
 	}{
-		{[]int{1, 2, 3, 4, 5}, 15},
-		{[]int{5, 5, 5, 5, 5}, 25},
-		{[]int{1, 2, 3}, 6},
-		{[]int{}, 0},
+		{"given array of five numbers when sum then returns correct total", []int{1, 2, 3, 4, 5}, 15},
+		{"given array of same numbers when sum then returns correct total", []int{5, 5, 5, 5, 5}, 25},
+		{"given array of three numbers when sum then returns correct total", []int{1, 2, 3}, 6},
+		{"given empty array when sum then returns zero", []int{}, 0},
 	}
 
 	for _, testCase := range testCases {
-		t.Run("given array of five numbers when sum then returns correct total", func(t *testing.T) {
+		t.Run(testCase.name, func(t *testing.T) {
 			got := Sum(testCase.numbers)
 			if got != testCase.expected {
 				t.Errorf("got %d want %d given, %v", got, testCase.expected, testCase.numbers)
@@ -28,19 +29,20 @@ func TestSum(t *testing.T) {
 }
 
 func TestSumAll(t *testing.T) {
-	testcases := []struct {
+	testCases := []struct {
+		name         string
 		numbersToSum [][]int
 		expected     []int
 	}{
-		{[][]int{{1, 2}, {3, 4, 5}}, []int{3, 12}},
-		{[][]int{{}, {0, 9}}, []int{0, 9}},
+		{"given multiple slices when sum all then returns correct totals", [][]int{{1, 2}, {3, 4, 5}}, []int{3, 12}},
+		{"given empty slice when sum all then returns zero", [][]int{{}, {0, 9}}, []int{0, 9}},
 	}
 
-	for _, testtestcases := range testcases {
-		t.Run("given multiple slices when sum all then returns correct totals", func(t *testing.T) {
-			got := SumAll(testtestcases.numbersToSum...)
-			if !slices.Equal(got, testtestcases.expected) {
-				t.Errorf("got %v want %v given, %v", got, testtestcases.expected, testtestcases.numbersToSum)
+	for _, testCase := range testCases {
+		t.Run(testCase.name, func(t *testing.T) {
+			got := SumAll(testCase.numbersToSum...)
+			if !slices.Equal(got, testCase.expected) {
+				t.Errorf("got %v want %v given, %v", got, testCase.expected, testCase.numbersToSum)
 			}
 		})
 	}
