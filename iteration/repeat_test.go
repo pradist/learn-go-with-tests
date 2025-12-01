@@ -4,16 +4,17 @@ import "testing"
 
 func TestRepeat(t *testing.T) {
 	testCases := []struct {
+		name     string
 		input    string
 		expected string
 	}{
-		{"a", "aaaaa"},
-		{"b", "bbbbb"},
-		{"c", "ccccc"},
+		{"repeat a five times", "a", "aaaaa"},
+		{"repeat b five times", "b", "bbbbb"},
+		{"repeat c five times", "c", "ccccc"},
 	}
 
 	for _, testCase := range testCases {
-		t.Run("repeating "+testCase.input, func(t *testing.T) {
+		t.Run(testCase.name, func(t *testing.T) {
 			repeated := Repeat(testCase.input)
 			assertCorrectMessage(t, repeated, testCase.expected)
 		})
@@ -28,7 +29,7 @@ func assertCorrectMessage(t testing.TB, got, want string) {
 }
 
 func BenchmarkRepeat(b *testing.B) {
-	for b.Loop() {
+	for i := 0; i < b.N; i++ {
 		Repeat("a")
 	}
 }
