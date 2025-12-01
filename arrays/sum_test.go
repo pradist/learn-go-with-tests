@@ -5,11 +5,13 @@ import "testing"
 func TestSum(t *testing.T) {
 
 	testCases := []struct {
-		numbers  [5]int
+		numbers  []int
 		expected int
 	}{
-		{[5]int{1, 2, 3, 4, 5}, 15},
-		{[5]int{5, 5, 5, 5, 5}, 25},
+		{[]int{1, 2, 3, 4, 5}, 15},
+		{[]int{5, 5, 5, 5, 5}, 25},
+		{[]int{1, 2, 3}, 6},
+		{[]int{}, 0},
 	}
 
 	for _, testCase := range testCases {
